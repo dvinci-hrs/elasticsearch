@@ -498,20 +498,20 @@ public class AttachmentMapper extends FieldMapper {
         context = context.createExternalValueContext(parsedContent);
         contentMapper.parse(context);
 
-        if (langDetect) {
-            try {
-                if (language != null) {
-                    metadata.add(Metadata.CONTENT_LANGUAGE, language);
-                } else {
-                    LanguageIdentifier identifier = new LanguageIdentifier(parsedContent);
-                    language = identifier.getLanguage();
-                }
-                context = context.createExternalValueContext(language);
-                languageMapper.parse(context);
-            } catch(Throwable t) {
-                logger.debug("Cannot detect language: [{}]", t.getMessage());
-            }
-        }
+//        if (langDetect) {
+//            try {
+//                if (language != null) {
+//                    metadata.add(Metadata.CONTENT_LANGUAGE, language);
+//                } else {
+//                    LanguageIdentifier identifier = new LanguageIdentifier(parsedContent);
+//                    language = identifier.getLanguage();
+//                }
+//                context = context.createExternalValueContext(language);
+//                languageMapper.parse(context);
+//            } catch(Throwable t) {
+//                logger.debug("Cannot detect language: [{}]", t.getMessage());
+//            }
+//        }
 
         if (name != null) {
             try {
@@ -524,49 +524,49 @@ public class AttachmentMapper extends FieldMapper {
             }
         }
 
-        if (metadata.get(Metadata.DATE) != null) {
-            try {
-                context = context.createExternalValueContext(metadata.get(Metadata.DATE));
-                dateMapper.parse(context);
-            } catch(MapperParsingException e){
-                if (!ignoreErrors) throw e;
-                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing date: [{}]: [{}]",
-                        e.getMessage(), context.externalValue());
-            }
-        }
+//        if (metadata.get(Metadata.DATE) != null) {
+//            try {
+//                context = context.createExternalValueContext(metadata.get(Metadata.DATE));
+//                dateMapper.parse(context);
+//            } catch(MapperParsingException e){
+//                if (!ignoreErrors) throw e;
+//                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing date: [{}]: [{}]",
+//                        e.getMessage(), context.externalValue());
+//            }
+//        }
 
-        if (metadata.get(Metadata.TITLE) != null) {
-            try {
-                context = context.createExternalValueContext(metadata.get(Metadata.TITLE));
-                titleMapper.parse(context);
-            } catch(MapperParsingException e){
-                if (!ignoreErrors) throw e;
-                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing title: [{}]: [{}]",
-                        e.getMessage(), context.externalValue());
-            }
-        }
+//        if (metadata.get(Metadata.TITLE) != null) {
+//            try {
+//                context = context.createExternalValueContext(metadata.get(Metadata.TITLE));
+//                titleMapper.parse(context);
+//            } catch(MapperParsingException e){
+//                if (!ignoreErrors) throw e;
+//                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing title: [{}]: [{}]",
+//                        e.getMessage(), context.externalValue());
+//            }
+//        }
 
-        if (metadata.get(Metadata.AUTHOR) != null) {
-            try {
-                context = context.createExternalValueContext(metadata.get(Metadata.AUTHOR));
-                authorMapper.parse(context);
-            } catch(MapperParsingException e){
-                if (!ignoreErrors) throw e;
-                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing author: [{}]: [{}]",
-                        e.getMessage(), context.externalValue());
-            }
-        }
+//        if (metadata.get(Metadata.AUTHOR) != null) {
+//            try {
+//                context = context.createExternalValueContext(metadata.get(Metadata.AUTHOR));
+//                authorMapper.parse(context);
+//            } catch(MapperParsingException e){
+//                if (!ignoreErrors) throw e;
+//                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing author: [{}]: [{}]",
+//                        e.getMessage(), context.externalValue());
+//            }
+//        }
 
-        if (metadata.get(Metadata.KEYWORDS) != null) {
-            try {
-                context = context.createExternalValueContext(metadata.get(Metadata.KEYWORDS));
-                keywordsMapper.parse(context);
-            } catch(MapperParsingException e){
-                if (!ignoreErrors) throw e;
-                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing keywords: [{}]: [{}]",
-                        e.getMessage(), context.externalValue());
-            }
-        }
+//        if (metadata.get(Metadata.KEYWORDS) != null) {
+//            try {
+//                context = context.createExternalValueContext(metadata.get(Metadata.KEYWORDS));
+//                keywordsMapper.parse(context);
+//            } catch(MapperParsingException e){
+//                if (!ignoreErrors) throw e;
+//                if (logger.isDebugEnabled()) logger.debug("Ignoring MapperParsingException catch while parsing keywords: [{}]: [{}]",
+//                        e.getMessage(), context.externalValue());
+//            }
+//        }
 
         if (contentType == null) {
             contentType = metadata.get(Metadata.CONTENT_TYPE);
